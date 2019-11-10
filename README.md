@@ -1,5 +1,9 @@
 # bootstrap-builder
 
+[![Build Status](https://travis-ci.org/marcjasz/bootstrap-builder.svg?branch=master)](https://travis-ci.org/marcjasz/bootstrap-builder)
+![Heroku](http://heroku-badge.herokuapp.com/?app=bootstrap-template-builder&svg=1)
+
+
 A simple REST microservice for our Software Engineering class. It takes in a configuration JSON and generates an HTML page template with boostrap and SEO tags.
 
 ### Built With
