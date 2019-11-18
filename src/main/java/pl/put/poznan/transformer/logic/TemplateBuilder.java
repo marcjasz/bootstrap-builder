@@ -10,7 +10,9 @@ public class TemplateBuilder {
     private String metaType;
     private String metaDescription;
     private String metaImage; //?
-    private String metaSeoType; //sprawdzić co z tym
+    private boolean metaSeoNormal;
+    private boolean metaSeoTwitter;
+    private boolean metaSeoOpengraph;
 
     public static final class Builder{
         private boolean headerEnable = false;
@@ -22,7 +24,9 @@ public class TemplateBuilder {
         private String metaType;
         private String metaDescription;
         private String metaImage; //?
-        private String metaSeoType;
+        private boolean metaSeoNormal;
+        private boolean metaSeoTwitter;
+        private boolean metaSeoOpengraph;
 
         public Builder headerEnable(boolean headerEnable){
             this.headerEnable = headerEnable;
@@ -69,8 +73,18 @@ public class TemplateBuilder {
             return this;
         }
 
-        public Builder metaSeoType(String metaSeoType){
-            this.metaSeoType = metaSeoType;
+        public Builder metaSeoNormal(boolean metaSeoNormal){
+            this.metaSeoNormal = metaSeoNormal;
+            return this;
+        }
+
+        public Builder metaSeoTwitter(boolean metaSeoTwitter){
+            this.metaSeoTwitter = metaSeoTwitter;
+            return this;
+        }
+
+        public Builder metaSeoOpengraph(boolean metaSeoOpengraph){
+            this.metaSeoOpengraph = metaSeoOpengraph;
             return this;
         }
 
@@ -86,7 +100,9 @@ public class TemplateBuilder {
             templateBuilder.metaType = this.metaType;
             templateBuilder.metaDescription = this.metaDescription;
             templateBuilder.metaImage = this.metaImage;
-            templateBuilder.metaSeoType = this.metaSeoType;
+            templateBuilder.metaSeoNormal = this.metaSeoNormal;
+            templateBuilder.metaSeoTwitter = this.metaSeoTwitter;
+            templateBuilder.metaSeoOpengraph = this.metaSeoOpengraph;
 
             return templateBuilder;
         }
