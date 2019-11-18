@@ -1,5 +1,8 @@
 package pl.put.poznan.transformer.logic;
 
+/**
+ *This class enables creating objects of html site. It is builder.
+ */
 public class TemplateBuilder {
     private boolean headerEnable;
     private String headerType;
@@ -14,6 +17,9 @@ public class TemplateBuilder {
     private boolean metaSeoTwitter;
     private boolean metaSeoOpengraph;
 
+    /**
+     *This class creates fluent API for creating TemplateBuilder objects.
+     */
     public static final class Builder{
         private boolean headerEnable = false;
         private String headerType;
@@ -88,6 +94,9 @@ public class TemplateBuilder {
             return this;
         }
 
+        /**
+         * @return This method creates object, it always should be at the end of definition of new object.
+         */
         public TemplateBuilder build(){
 
             TemplateBuilder templateBuilder= new TemplateBuilder();
@@ -107,6 +116,10 @@ public class TemplateBuilder {
             return templateBuilder;
         }
     }
+
+    /**
+     * @return This method creates new builder object to create new templateBuilder object.
+     */
     public static Builder builder() {
         return new Builder();
     }
