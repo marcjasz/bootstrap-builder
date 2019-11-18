@@ -1,46 +1,21 @@
 package pl.put.poznan.builder.rest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import pl.put.poznan.builder.logic.BootstrapBuilder;
-
-import java.util.Arrays;
+import pl.put.poznan.builder.logic.Request;
 
 
 @RestController
-@RequestMapping("/{text}")
+@RequestMapping("/")
 public class BootstrapBuilderController {
 
-    private static final Logger logger = LoggerFactory.getLogger(BootstrapBuilderController.class);
-
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public String get(@PathVariable String text,
-                              @RequestParam(value="transforms", defaultValue="upper,escape") String[] transforms) {
-
-        // log the parameters
-        logger.debug(text);
-        logger.debug(Arrays.toString(transforms));
-
-        // do the transformation, you should run your logic here, below just a silly example
-        BootstrapBuilder transformer = new BootstrapBuilder(transforms);
-        return transformer.transform(text);
+    @RequestMapping(method = RequestMethod.GET, produces = "text/plain")
+    public String get() {
+        return "Witam";
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public String post(@PathVariable String text,
-                      @RequestBody String[] transforms) {
-
-        // log the parameters
-        logger.debug(text);
-        logger.debug(Arrays.toString(transforms));
-
-        // do the transformation, you should run your logic here, below just a silly example
-        BootstrapBuilder transformer = new BootstrapBuilder(transforms);
-        return transformer.transform(text);
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    Request port(@RequestBody Request request) {
+        return request;
     }
-
-
-
 }
 
 
