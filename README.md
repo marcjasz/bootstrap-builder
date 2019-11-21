@@ -22,6 +22,7 @@ Clone the repository - `git clone https://github.com/marcjasz/bootstrap-builder.
 ### Usage
 
 When run locally, the app will be available at localhost:8080. You can also access a fully working demo at https://bootstrap-template-builder.herokuapp.com/.
+For the project's Javadoc documentation see our GithubPages: https://marcjasz.github.io/bootstrap-builder
 
 Example JSON input:
 `(TODO)`
