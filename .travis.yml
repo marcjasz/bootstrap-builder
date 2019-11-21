@@ -1,7 +1,12 @@
 language: java
 script:
 - mvn javadoc:javadoc
-after_success:
-- "./push-javadoc.sh"
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: ./target/site/apidocs
+  github_token: $GH_TOKEN  # Set in the settings page of your repository, as a secure variable
+  on:
+    branch: master
 dd:
   secure: "lYiQbhRLaJMjQhSLkeJSp1U5WsXJzaCtd2eZZ4NTbSyvIZhRCUmwX+z2sJcbnYOSj5ou18C5G8rRPjYFUbm/WZS8a+5vhcSA3AAgrGUa42v2ebTDlKQGl2INwCq8MN1/fdppyXQlUQe2yVzyKswYdnpTYiOjFYsrqM/d3JqZXyQt7y9PZ03NPnMb/DJeGuX3v4D2RV+tlMV6lY33DT63O2jiHqN9UKzBJfpokWFWpiENaro4Q2gilCfnm2mWFzNQCmyR67mccnXwX4am2d4krPr2Hg0bP7mOALvyxMJmy7DQy1VKGybmD05s+ym19xvkI9AHHmJVMcCfCmWMQ4NWRsjh/WY/ELCLGxA4a7hWXQgVMPJCeX9pGkaHYAPMriSGJLc1wSNawXxYrOZ7oiGg3sNrteoX1XosNjOH4jf+tjJgIm1qw6d1SEVV+EnH+r5vWpA5U/W38hKb6/b1vfW8jUEETsx9FhFGSKfenLpA6pDL74frTDxAjxyt/GgVSDnmUDexyUMediQ7zorGkEdu2QilnaTwFSJX1153VA18VRQE0NZ6jhpUsGPZu0lWfPDCT3MGCJ/IVZjWLDBAnLhj186rdTAOLgM37MHxMVweN50Bb2qNOPG+VBgzNF83Wtwyf6C7pJzmsJ6t4BSSIfh/QqFy8HfvRt6ILecr5FCbpIY="
