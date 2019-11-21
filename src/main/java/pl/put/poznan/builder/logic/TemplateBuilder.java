@@ -1,4 +1,4 @@
-package pl.put.poznan.transformer.logic;
+package pl.put.poznan.builder.logic;
 
 /**
  *This class enables creating objects of html site. It is builder.
