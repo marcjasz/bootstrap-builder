@@ -1,6 +1,7 @@
 package pl.put.poznan.builder.rest;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.builder.logic.Request;
+import pl.put.poznan.builder.logic.TemplateBuilder;
 
 
 @RestController
@@ -12,9 +13,10 @@ public class BootstrapBuilderController {
         return "Witam";
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    Request port(@RequestBody Request request) {
-        return request;
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "text/html")
+    String port(@RequestBody Request request) {
+        String template = new TemplateBuilder().builder().build();
+        return template;
     }
 }
 

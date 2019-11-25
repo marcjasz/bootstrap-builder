@@ -4,18 +4,7 @@ package pl.put.poznan.builder.logic;
  *This class enables creating objects of html site. It is builder.
  */
 public class TemplateBuilder {
-    private boolean headerEnable;
-    private String headerType;
-    private String headerText;
-    private boolean footerEnable;
-    private String footerText;
-    private String metaTitle;
-    private String metaType;
-    private String metaDescription;
-    private String metaImage; //?
-    private boolean metaSeoNormal;
-    private boolean metaSeoTwitter;
-    private boolean metaSeoOpengraph;
+    private String result;
 
     /**
      *This class creates fluent API for creating TemplateBuilder objects.
@@ -97,23 +86,21 @@ public class TemplateBuilder {
         /**
          * @return This method creates object, it always should be at the end of definition of new object.
          */
-        public TemplateBuilder build(){
+        public String build(){
 
             TemplateBuilder templateBuilder= new TemplateBuilder();
-            templateBuilder.headerEnable = this.headerEnable;
-            templateBuilder.headerType = this.headerType;
-            templateBuilder.headerText = this.headerText;
-            templateBuilder.footerEnable = this.footerEnable;
-            templateBuilder.footerText = this.footerText;
-            templateBuilder.metaTitle = this.metaTitle;
-            templateBuilder.metaType = this.metaType;
-            templateBuilder.metaDescription = this.metaDescription;
-            templateBuilder.metaImage = this.metaImage;
-            templateBuilder.metaSeoNormal = this.metaSeoNormal;
-            templateBuilder.metaSeoTwitter = this.metaSeoTwitter;
-            templateBuilder.metaSeoOpengraph = this.metaSeoOpengraph;
-
-            return templateBuilder;
+            templateBuilder.result =  "<!DOCTYPE html>\n"
+                                      +"<html lang=\"en\">\n"
+                                      +"<head>\n"
+                                      +"\t<meta charset=\"utf-8\">\n"
+                                      +"\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n"
+                                      +"\t<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n"
+                                      +"</head>\n"
+                                      +"<body>\n"
+                                      +"\t<h1>Hello, world!</h1>\n"
+                                      +"</body>"
+                                      +"</html>";
+            return templateBuilder.result;
         }
     }
 
