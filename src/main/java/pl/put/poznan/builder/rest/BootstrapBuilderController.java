@@ -1,6 +1,5 @@
 package pl.put.poznan.builder.rest;
 import org.springframework.web.bind.annotation.*;
-import pl.put.poznan.builder.logic.Attribute;
 import pl.put.poznan.builder.logic.Request;
 import pl.put.poznan.builder.logic.TemplateBuilder;
 
