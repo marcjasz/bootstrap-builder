@@ -4,16 +4,14 @@ import java.util.Vector;
 
 public class Attribute {
     private String name;
-    private Vector<String> values;
+    private Vector<String> values = new Vector<String>();
 
     public Attribute(String name) {
         this.name = name;
-        this.values = new Vector<String>();
     }
 
     public Attribute(String name, String value) {
         this.name = name;
-        this.values = new Vector<String>();
         addValue(value);
     }
 

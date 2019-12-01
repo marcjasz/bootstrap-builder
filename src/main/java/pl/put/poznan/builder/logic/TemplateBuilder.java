@@ -13,13 +13,9 @@ public class TemplateBuilder {
      *This class creates fluent API for creating TemplateBuilder objects.
      */
     public static final class Builder{
-        private String name;
-        private String text;
-        private Integer depth = 0;
-        private Boolean nullTag = false;
-        private Vector<Attribute> attributes = new Vector<Attribute>();
-        private Vector<Builder> childElements = new Vector<Builder>();
-
+        private Element head;
+        private Element body;
+        private Element main;
         private boolean headerEnable = false;
         private String headerType;
         private String headerText;
@@ -33,36 +29,56 @@ public class TemplateBuilder {
         private boolean metaSeoTwitter;
         private boolean metaSeoOpengraph;
 
-        public Builder addNode(Builder node) {
-            this.childElements.addElement(node);
+        public Builder setHead() {
+            this.head = new Element().setTag("head");
             return this;
         }
 
-        public Builder setName(String name) {
-            this.name = name;
+        public Builder setBody() {
+            this.body = new Element().setTag("body");
             return this;
         }
 
-        public Builder setNullTag(Boolean nullTag) {
-            this.nullTag = nullTag;
+        public Builder setMain() {
+            Element main = new Element().setTag("main");
+            main.addAttribute(new Attribute("class", "container"));
+            this.main = main;
             return this;
         }
 
-        public Builder setText(String text) {
-            this.text = text;
-            return this;
-        }
-
-        public Builder setDepth(Integer depth){
-            this.depth = depth;
-            for(Builder child : childElements) {
-                child.setDepth(depth + 1);
+        public Builder addMeta(String attrTag, String ... attrValues) {
+            Element meta = new Element().setTag("meta").setNullTag();
+            Attribute attr = new Attribute(attrTag);
+            for(String attrValue : attrValues) {
+                attr.addValue(attrValue);
             }
+            meta.addAttribute(attr);
+            this.head.addNode(meta);
             return this;
         }
 
-        public Builder addAttribute(Attribute attribute) {
-            this.attributes.addElement(attribute);
+        public Builder linkBootstrap() {
+            Element link = new Element()
+                .setTag("link")
+                .setNullTag()
+                .addAttribute(new Attribute("href", "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"))
+                .addAttribute(new Attribute("integrity", "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"))
+                .addAttribute(new Attribute("rel", "stylesheet"))
+                .addAttribute(new Attribute("crossorigin", "anonymous"));
+            this.head.addNode(link);
+            return this;
+        }
+
+        public Builder addParagraph(String content, String ... classAttrs) {
+            Element p = new Element()
+                    .setTag("p")
+                    .setText(content);
+            Attribute attr = new Attribute("class");
+            for(String classAttr : classAttrs) {
+                attr.addValue(classAttr);
+            }
+            p.addAttribute(attr);
+            this.main.addNode(p);
             return this;
         }
 
@@ -130,25 +146,14 @@ public class TemplateBuilder {
          * @return This method creates object, it always should be at the end of definition of new object.
          */
         public String build() {
-            String result = getIndentation() + "<"  + this.name;
-            for(Attribute attribute : this.attributes) {
-                result += " " + attribute.toString();
-            }
-            result += ">";
-            for(Builder child : childElements) {
-                result += "\n" + child.build();
-            }
-            if (!StringUtils.isEmpty(this.text)) {
-                result += "\n\t" + getIndentation() + this.text;
-            }
-            if(!this.nullTag) {
-                result += "\n" + getIndentation() + "</" + this.name + ">";
-            }
-            return result;
-        }
-
-        private String getIndentation() {
-            return String.join("", Collections.nCopies(this.depth, "\t"));
+            String doctype = new Element().setTag("!DOCTYPE html").setNullTag().toString();
+            String document = new Element()
+                .setTag("html")
+                .addNode(this.head)
+                .addNode(this.body.addNode(this.main))
+                .setDepth(0)
+                .toString();
+            return doctype + "\n" + document;
         }
     }
 
