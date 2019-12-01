@@ -1,15 +1,25 @@
 package pl.put.poznan.builder.logic;
 
+import org.springframework.util.StringUtils;
+
+import java.util.Collections;
+import java.util.Vector;
+
 /**
  *This class enables creating objects of html site. It is builder.
  */
 public class TemplateBuilder {
-    private String result;
-
     /**
      *This class creates fluent API for creating TemplateBuilder objects.
      */
     public static final class Builder{
+        private String name;
+        private String text;
+        private Integer depth = 0;
+        private Boolean nullTag = false;
+        private Vector<Attribute> attributes = new Vector<Attribute>();
+        private Vector<Builder> childElements = new Vector<Builder>();
+
         private boolean headerEnable = false;
         private String headerType;
         private String headerText;
@@ -22,6 +32,39 @@ public class TemplateBuilder {
         private boolean metaSeoNormal;
         private boolean metaSeoTwitter;
         private boolean metaSeoOpengraph;
+
+        public Builder addNode(Builder node) {
+            this.childElements.addElement(node);
+            return this;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setNullTag(Boolean nullTag) {
+            this.nullTag = nullTag;
+            return this;
+        }
+
+        public Builder setText(String text) {
+            this.text = text;
+            return this;
+        }
+
+        public Builder setDepth(Integer depth){
+            this.depth = depth;
+            for(Builder child : childElements) {
+                child.setDepth(depth + 1);
+            }
+            return this;
+        }
+
+        public Builder addAttribute(Attribute attribute) {
+            this.attributes.addElement(attribute);
+            return this;
+        }
 
         public Builder headerEnable(boolean headerEnable){
             this.headerEnable = headerEnable;
@@ -86,21 +129,26 @@ public class TemplateBuilder {
         /**
          * @return This method creates object, it always should be at the end of definition of new object.
          */
-        public String build(){
+        public String build() {
+            String result = getIndentation() + "<"  + this.name;
+            for(Attribute attribute : this.attributes) {
+                result += " " + attribute.toString();
+            }
+            result += ">";
+            for(Builder child : childElements) {
+                result += "\n" + child.build();
+            }
+            if (!StringUtils.isEmpty(this.text)) {
+                result += "\n\t" + getIndentation() + this.text;
+            }
+            if(!this.nullTag) {
+                result += "\n" + getIndentation() + "</" + this.name + ">";
+            }
+            return result;
+        }
 
-            TemplateBuilder templateBuilder= new TemplateBuilder();
-            templateBuilder.result =  "<!DOCTYPE html>\n"
-                                      +"<html lang=\"en\">\n"
-                                      +"<head>\n"
-                                      +"\t<meta charset=\"utf-8\">\n"
-                                      +"\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n"
-                                      +"\t<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n"
-                                      +"</head>\n"
-                                      +"<body>\n"
-                                      +"\t<h1>Hello, world!</h1>\n"
-                                      +"</body>"
-                                      +"</html>";
-            return templateBuilder.result;
+        private String getIndentation() {
+            return String.join("", Collections.nCopies(this.depth, "\t"));
         }
     }
 
