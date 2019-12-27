@@ -18,6 +18,7 @@ public class BootstrapBuilderController {
         new TemplateBuilder();
         String result = TemplateBuilder.builder()
                 .setHead()
+                .setFoot()
                 .addMeta("charset", "utf-8")
                 .addMeta("name", "viewport")
                 .addMeta("content", "width=device-width", "initial-scale=1", "shrink-to-fit=no")

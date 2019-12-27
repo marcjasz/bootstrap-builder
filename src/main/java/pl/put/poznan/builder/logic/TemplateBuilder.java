@@ -13,6 +13,7 @@ public class TemplateBuilder {
         private Element head;
         private Element body;
         private Element main;
+        private Element foot;
         private boolean headerEnable = false;
         private String headerType;
         private String headerText;
@@ -25,6 +26,15 @@ public class TemplateBuilder {
         private boolean metaSeoNormal;
         private boolean metaSeoTwitter;
         private boolean metaSeoOpengraph;
+
+
+        /**
+         * @return Builder object to add footer to building website.
+         */
+        public Builder setFoot() {
+            this.foot = new Element().setTag("foot");
+            return this;
+        }
 
         /** Empty {@code <head>} element. */
         public Builder setHead() {
@@ -161,6 +171,7 @@ public class TemplateBuilder {
                 .setTag("html")
                 .addNode(this.head)
                 .addNode(this.body.addNode(this.main))
+                .addNode(this.foot)
                 .setDepth(0)
                 .toString();
             return doctype + "\n" + document;
