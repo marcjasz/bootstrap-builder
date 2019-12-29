@@ -16,17 +16,27 @@ public class BootstrapBuilderController {
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "text/html")
     String port(@RequestBody Request request) {
         new TemplateBuilder();
-        String result = TemplateBuilder.builder()
-                .setHead()
-                .addMeta("charset", "utf-8")
-                .addMeta("name", "viewport")
-                .addMeta("content", "width=device-width", "initial-scale=1", "shrink-to-fit=no")
-                .linkBootstrap()
-                .setBody()
-                .setMain()
-                .addParagraph("Hello", "display-1")
-                .build();
-        return result;
+        TemplateBuilder.Builder templateBuilder  = TemplateBuilder.builder()
+            .setHead()
+            .addMeta("charset", "utf-8")
+            .addMeta("name", "viewport")
+            .addMeta("content", "width=device-width", "initial-scale=1", "shrink-to-fit=no")
+            .linkBootstrap()
+            .setBody()
+            .setMain()
+            .addParagraph("Hello", "display-1");
+
+        if (request.isOpenGraphEnabled()) {
+            templateBuilder.addOpenGraphTag("type", "website");
+
+            if (request.getOpenGraphTitle() != null)
+                templateBuilder.addOpenGraphTag("title", request.getOpenGraphTitle());
+
+            if (request.getOpenGraphUrl() != null)
+                templateBuilder.addOpenGraphTag("title", request.getOpenGraphUrl());
+        }
+
+        return templateBuilder.build();
     }
 }
 

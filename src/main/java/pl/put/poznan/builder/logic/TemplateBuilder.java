@@ -62,6 +62,21 @@ public class TemplateBuilder {
             return this;
         }
 
+        /**
+         * Adds a {@code <meta>} tag to the header with OpenGraph attributes ("property" prefixed with "og:" and "content")
+         * @param property OpenGraph protocol property
+         * @param content value from the request
+         * @return
+         */
+        public Builder addOpenGraphTag(String property, String content) {
+            Element meta = new Element().setTag("meta").setNullTag();
+            Attribute prop = new Attribute("property", "og:" + property);
+            Attribute cont = new Attribute("content", content);
+            meta.addAttribute(prop).addAttribute(cont);
+            this.head.addNode(meta);
+            return this;
+        }
+
         /** Adds a paragraph to the main section. Not in the project specification, but it shows if Bootstrap works.
          * @param content text inside the paragraph
          * @param classAttrs values of the 'class' attribute, in particular we can enter Bootstrap stuff here.

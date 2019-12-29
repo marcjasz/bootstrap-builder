@@ -10,6 +10,9 @@ public class Request {
     private String headerText;
     private boolean footerEnable;
     private String footerText;
+    private boolean openGraphEnabled;
+    private String openGraphTitle;
+    private String openGraphUrl;
 
     public void setHeaderEnable(boolean headerEnable) { this.headerEnable = headerEnable; }
 
@@ -31,4 +34,15 @@ public class Request {
 
     public String getFooterText() { return this.footerText; }
 
+    public boolean isOpenGraphEnabled() { return openGraphEnabled; }
+
+    public void setOpenGraphEnabled(boolean openGraphEnabled) { this.openGraphEnabled = openGraphEnabled; }
+
+    public String getOpenGraphTitle() { return openGraphTitle; }
+
+    public void setOpenGraphTitle(String openGraphTitle) { this.openGraphTitle = openGraphTitle; }
+
+    public String getOpenGraphUrl() { return openGraphUrl; }
+
+    public void setOpenGraphUrl(String openGraphUrl) { this.openGraphUrl = openGraphUrl; }
 }
