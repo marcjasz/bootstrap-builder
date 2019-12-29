@@ -8,7 +8,7 @@ import java.util.Vector;
  */
 public class Attribute {
     private String name;
-    private Vector<String> values = new Vector<String>();
+    public Vector<String> values = new Vector<String>();
 
     /** Constructor which sets only the name. */
     public Attribute(String name) {
