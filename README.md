@@ -30,3 +30,14 @@ Example JSON input:
 ### License
 
 MIT (see [here](../master/LICENSE))
+
+### November retro summary
+
+**Good**:
+ * regular meetings
+ * we worked systematically
+ * tasks were divided into small parts
+ 
+**Bad**:
+ * meetings were too long - **action:** make shorter meetings
+ * pull were requests accepted without criticism - **action:** more involvement in code review 
