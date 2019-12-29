@@ -14,7 +14,7 @@ public class BootstrapBuilderController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "text/html")
-    String port(@RequestBody Request request) {
+    String post(@RequestBody Request request) {
         new TemplateBuilder();
         TemplateBuilder.Builder templateBuilder  = TemplateBuilder.builder()
             .setHead()
