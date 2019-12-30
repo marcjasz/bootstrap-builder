@@ -27,32 +27,26 @@ public class BootstrapBuilderController {
             .addParagraph("Hello", "display-1");
 
         if (request.isOpenGraphEnabled()) {
-            templateBuilder.addOpenGraphTag("type", "website");
+            TemplateBuilder.SeoTagBuilder openGraphBuilder = TemplateBuilder.seoTagBuilder();
+            openGraphBuilder.setPrefix("og").setPropertyAttributeName("property");
 
-            if (request.getOpenGraphTitle() != null)
-                templateBuilder.addOpenGraphTag("title", request.getOpenGraphTitle());
-
-            if (request.getOpenGraphUrl() != null)
-                templateBuilder.addOpenGraphTag("url", request.getOpenGraphUrl());
-
-            if (request.getOpenGraphImage() != null)
-                templateBuilder.addOpenGraphTag("image", request.getOpenGraphImage());
+            templateBuilder
+                    .addSeoTagIfExists(openGraphBuilder.buildSeoTag("type", "website"))
+                    .addSeoTagIfExists(openGraphBuilder.buildSeoTag("title", request.getOpenGraphTitle()))
+                    .addSeoTagIfExists(openGraphBuilder.buildSeoTag("url", request.getOpenGraphUrl()))
+                    .addSeoTagIfExists(openGraphBuilder.buildSeoTag("image", request.getOpenGraphImage()));
         }
 
         if (request.isTwitterCardEnabled()) {
-            templateBuilder.addTwitterTag("type", "summary");
+            TemplateBuilder.SeoTagBuilder twitterTagBuilder = TemplateBuilder.seoTagBuilder();
+            twitterTagBuilder.setPrefix("twitter").setPropertyAttributeName("name");
 
-            if (request.getTwitterCardTitle() != null)
-                templateBuilder.addTwitterTag("title", request.getTwitterCardTitle());
-
-            if (request.getTwitterCardUrl() != null)
-                templateBuilder.addTwitterTag("url", request.getTwitterCardUrl());
-
-            if (request.getTwitterCardImage() != null)
-                templateBuilder.addTwitterTag("image", request.getTwitterCardImage());
-
-            if (request.getTwitterCardDescription() != null)
-                templateBuilder.addTwitterTag("description", request.getTwitterCardDescription());
+            templateBuilder
+                    .addSeoTagIfExists(twitterTagBuilder.buildSeoTag("type", "summary"))
+                    .addSeoTagIfExists(twitterTagBuilder.buildSeoTag("title", request.getTwitterCardTitle()))
+                    .addSeoTagIfExists(twitterTagBuilder.buildSeoTag("url", request.getTwitterCardUrl()))
+                    .addSeoTagIfExists(twitterTagBuilder.buildSeoTag("image", request.getTwitterCardImage()))
+                    .addSeoTagIfExists(twitterTagBuilder.buildSeoTag("description", request.getTwitterCardDescription()));
         }
 
         return templateBuilder.build();

@@ -62,33 +62,12 @@ public class TemplateBuilder {
             return this;
         }
 
-        /**
-         * Adds a {@code <meta>} tag to the header with OpenGraph attributes ("property" prefixed with "og:" and "content")
-         * @param property OpenGraph protocol property
-         * @param content value from the request
-         * @return
+        /** Adds an tag to the {@code <head>} element, does nothing if the element is null.
+         * @param tag
          */
-        public Builder addOpenGraphTag(String property, String content) {
-            Element meta = new Element().setTag("meta").setNullTag();
-            Attribute prop = new Attribute("property", "og:" + property);
-            Attribute cont = new Attribute("content", content);
-            meta.addAttribute(prop).addAttribute(cont);
-            this.head.addNode(meta);
-            return this;
-        }
-
-        /**
-         * Adds a {@code <meta>} tag to the header with Twitter Card attributes ("name" prefixed with "twitter:" and "content")
-         * @param name Twitter Card property name
-         * @param content value from the request
-         * @return
-         */
-        public Builder addTwitterTag(String name, String content) {
-            Element meta = new Element().setTag("meta").setNullTag();
-            Attribute attrName = new Attribute("name", "twitter:" + name);
-            Attribute cont = new Attribute("content", content);
-            meta.addAttribute(attrName).addAttribute(cont);
-            this.head.addNode(meta);
+        public Builder addSeoTagIfExists(Element tag){
+            if(tag != null)
+                this.head.addNode(tag);
             return this;
         }
 
@@ -126,9 +105,35 @@ public class TemplateBuilder {
     }
 
     /**
+     * A helper class which creates typical SEO meta elements.
+     */
+    public static final class SeoTagBuilder {
+        private String prefix;
+        private String propertyAttributeName;
+
+        public SeoTagBuilder setPrefix(String prefix) {
+            this.prefix = prefix;
+            return this;
+        }
+
+        public SeoTagBuilder setPropertyAttributeName(String propertyAttributeName) {
+            this.propertyAttributeName = propertyAttributeName;
+            return this;
+        }
+
+        public Element buildSeoTag(String property, String content){
+            if (content == null) return null;
+
+            Element meta = new Element().setTag("meta").setNullTag();
+            Attribute attrName = new Attribute(this.propertyAttributeName, this.prefix + ":" + property);
+            Attribute cont = new Attribute("content", content);
+            meta.addAttribute(attrName).addAttribute(cont);
+            return meta;
+        }
+    }
+    /**
      * @return This method creates new builder object to create new templateBuilder object.
      */
-    public static Builder builder() {
-        return new Builder();
-    }
+    public static Builder builder() { return new Builder(); }
+    public static SeoTagBuilder seoTagBuilder() { return new SeoTagBuilder(); }
 }
