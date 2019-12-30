@@ -77,6 +77,21 @@ public class TemplateBuilder {
             return this;
         }
 
+        /**
+         * Adds a {@code <meta>} tag to the header with Twitter Card attributes ("name" prefixed with "twitter:" and "content")
+         * @param name Twitter Card property name
+         * @param content value from the request
+         * @return
+         */
+        public Builder addTwitterTag(String name, String content) {
+            Element meta = new Element().setTag("meta").setNullTag();
+            Attribute attrName = new Attribute("name", "twitter:" + name);
+            Attribute cont = new Attribute("content", content);
+            meta.addAttribute(attrName).addAttribute(cont);
+            this.head.addNode(meta);
+            return this;
+        }
+
         /** Adds a paragraph to the main section. Not in the project specification, but it shows if Bootstrap works.
          * @param content text inside the paragraph
          * @param classAttrs values of the 'class' attribute, in particular we can enter Bootstrap stuff here.

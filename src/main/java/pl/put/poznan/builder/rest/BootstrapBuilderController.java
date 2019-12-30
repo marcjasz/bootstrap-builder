@@ -14,7 +14,7 @@ public class BootstrapBuilderController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "text/html")
-    String post(@RequestBody Request request) {
+    public String post(@RequestBody Request request) {
         new TemplateBuilder();
         TemplateBuilder.Builder templateBuilder  = TemplateBuilder.builder()
             .setHead()
@@ -33,7 +33,26 @@ public class BootstrapBuilderController {
                 templateBuilder.addOpenGraphTag("title", request.getOpenGraphTitle());
 
             if (request.getOpenGraphUrl() != null)
-                templateBuilder.addOpenGraphTag("title", request.getOpenGraphUrl());
+                templateBuilder.addOpenGraphTag("url", request.getOpenGraphUrl());
+
+            if (request.getOpenGraphImage() != null)
+                templateBuilder.addOpenGraphTag("image", request.getOpenGraphImage());
+        }
+
+        if (request.isTwitterCardEnabled()) {
+            templateBuilder.addTwitterTag("type", "summary");
+
+            if (request.getTwitterCardTitle() != null)
+                templateBuilder.addTwitterTag("title", request.getTwitterCardTitle());
+
+            if (request.getTwitterCardUrl() != null)
+                templateBuilder.addTwitterTag("url", request.getTwitterCardUrl());
+
+            if (request.getTwitterCardImage() != null)
+                templateBuilder.addTwitterTag("image", request.getTwitterCardImage());
+
+            if (request.getTwitterCardDescription() != null)
+                templateBuilder.addTwitterTag("description", request.getTwitterCardDescription());
         }
 
         return templateBuilder.build();

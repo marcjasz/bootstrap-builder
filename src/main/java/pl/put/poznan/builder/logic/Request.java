@@ -13,6 +13,12 @@ public class Request {
     private boolean openGraphEnabled;
     private String openGraphTitle;
     private String openGraphUrl;
+    private String openGraphImage;
+    private boolean twitterCardEnabled;
+    private String twitterCardTitle;
+    private String twitterCardUrl;
+    private String twitterCardImage;
+    private String twitterCardDescription;
 
     public void setHeaderEnable(boolean headerEnable) { this.headerEnable = headerEnable; }
 
@@ -45,4 +51,28 @@ public class Request {
     public String getOpenGraphUrl() { return openGraphUrl; }
 
     public void setOpenGraphUrl(String openGraphUrl) { this.openGraphUrl = openGraphUrl; }
+
+    public String getOpenGraphImage() { return openGraphImage; }
+
+    public void setOpenGraphImage(String openGraphImage) { this.openGraphImage = openGraphImage; }
+
+    public boolean isTwitterCardEnabled() { return twitterCardEnabled; }
+
+    public void setTwitterCardEnabled(boolean twitterCardEnabled) { this.twitterCardEnabled = twitterCardEnabled; }
+
+    public String getTwitterCardTitle() { return twitterCardTitle; }
+
+    public void setTwitterCardTitle(String twitterCardTitle) { this.twitterCardTitle = twitterCardTitle; }
+
+    public String getTwitterCardUrl() { return twitterCardUrl; }
+
+    public void setTwitterCardUrl(String twitterCardUrl) { this.twitterCardUrl = twitterCardUrl; }
+
+    public String getTwitterCardImage() { return twitterCardImage; }
+
+    public void setTwitterCardImage(String twitterCardImage) { this.twitterCardImage = twitterCardImage; }
+
+    public String getTwitterCardDescription() { return twitterCardDescription; }
+
+    public void setTwitterCardDescription(String twitterCardDescription) { this.twitterCardDescription = twitterCardDescription; }
 }
