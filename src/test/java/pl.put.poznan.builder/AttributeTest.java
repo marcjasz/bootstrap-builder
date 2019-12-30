@@ -1,20 +1,21 @@
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import pl.put.poznan.builder.logic.Attribute;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-class AttributeTest {
+public class AttributeTest {
 
     @Test
-    void addValueTest() {
+    public void addValueTest() {
         Attribute  attribute = new Attribute("nazwa");
         attribute.addValue("6");
         assertEquals("[6]", attribute.getValue().toString());
     }
 
     @Test
-    void toStringTest() {
+    public void toStringTest() {
         String name = "nazwa";
         String value = "6";
         Attribute  attribute = new Attribute(name, value);
@@ -23,21 +24,21 @@ class AttributeTest {
 
     }
     @Test
-    void toStringNotTest() {
+    public void toStringNotTest() {
         String name = "nazwa";
         String value = "5";
         Attribute  attribute = new Attribute(name, "6");
         assertNotEquals (name+"=\""+value+"\"", attribute.toString()); ;
     }
     @Test
-    void toStringNot2Test() {
+    public void toStringNot2Test() {
         String name = "nazwa";
         String value = "5";
         Attribute  attribute = new Attribute("naz", value);
         assertNotEquals (name+"=\""+value+"\"", attribute.toString());
     }
     @Test
-    void toStringNot3Test() {
+    public void toStringNot3Test() {
         String name = "nazwa";
         String value = "5";
         Attribute  attribute = new Attribute("naz", "9");

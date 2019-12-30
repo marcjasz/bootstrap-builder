@@ -1,4 +1,5 @@
-import org.testng.annotations.Test;
+
+import org.junit.Test;
 import pl.put.poznan.builder.logic.TemplateBuilder;
 
 import static org.junit.Assert.assertNotEquals;
