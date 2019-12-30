@@ -10,6 +10,7 @@ public class TemplateBuilder {
      *This class creates fluent API for creating TemplateBuilder objects.
      */
     public static final class Builder{
+
         private Element head;
         private Element body;
         private Element main;
@@ -31,7 +32,18 @@ public class TemplateBuilder {
             this.head = new Element().setTag("head");
             return this;
         }
-
+        public String getHeadTag(){
+            return head.getTag();
+        }
+        public String getHeadChildTag(){
+            return head.getChildTag();
+        }
+        public String getMainChildTag(){
+            return main.getChildTag();
+        }
+        public String getMainChildText(){
+            return main.getChildText();
+        }
         /** Empty {@code <body>} element. */
         public Builder setBody() {
             this.body = new Element().setTag("body");

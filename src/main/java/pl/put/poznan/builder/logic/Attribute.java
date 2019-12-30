@@ -8,7 +8,7 @@ import java.util.Vector;
  */
 public class Attribute {
     private String name;
-    public Vector<String> values = new Vector<String>();
+    private Vector<String> values = new Vector<String>();
 
     /** Constructor which sets only the name. */
     public Attribute(String name) {
@@ -25,6 +25,9 @@ public class Attribute {
     public Attribute addValue(String value) {
         this.values.addElement(value);
         return this;
+    }
+    public Vector<String> getValue(){
+        return values;
     }
 
     /** Forms a string from the Attribute object, the values are all surrounded by quotes and separated by spaces. */

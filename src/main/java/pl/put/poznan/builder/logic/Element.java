@@ -23,6 +23,7 @@ public class Element {
         return this;
     }
 
+
     /** Sets the name of the element's tag e.g. 'p' for paragraph ({@code <p>...</p>}). */
     public Element setTag(String tag) {
         this.tag = tag;
@@ -34,11 +35,23 @@ public class Element {
         this.nullTag = true;
         return this;
     }
+    public String getTag(){
+        return tag;
+    }
+    public String getChildTag(){
+        return childElements.get (0).getTag();
+    }
+    public  Boolean getNullTag(){
+        return nullTag;
+    }
 
     /** Sets the text content which will be placed inside the element. */
     public Element setText(String text) {
         this.text = text;
         return this;
+    }
+    public  String getChildText(){
+        return childElements.get (0).text;
     }
 
     /** Method which is called recurrently to find how deeply the element is nested, so we can indent it properly. */
