@@ -71,6 +71,25 @@ public class TemplateBuilder {
             return this;
         }
 
+        public Builder addTitleIfProvided(String title){
+            if (title == null) return this;
+
+            Element titleElement = new Element().setTag("title").setText(title);
+            this.head.addNode(titleElement);
+            return this;
+        }
+
+        public Builder addDescriptionIfProvided(String description){
+            if (description == null) return this;
+
+            Element descriptionElement = new Element().setTag("meta").setNullTag();
+            descriptionElement
+                    .addAttribute(new Attribute("name", "description"))
+                    .addAttribute(new Attribute("content", description));
+            this.head.addNode(descriptionElement);
+            return this;
+        }
+
         /** Adds a paragraph to the main section. Not in the project specification, but it shows if Bootstrap works.
          * @param content text inside the paragraph
          * @param classAttrs values of the 'class' attribute, in particular we can enter Bootstrap stuff here.

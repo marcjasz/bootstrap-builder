@@ -10,6 +10,8 @@ public class Request {
     private String headerText;
     private boolean footerEnable;
     private String footerText;
+    private String title;
+    private String description;
     private boolean openGraphEnabled;
     private String openGraphTitle;
     private String openGraphUrl;
@@ -75,4 +77,12 @@ public class Request {
     public String getTwitterCardDescription() { return twitterCardDescription; }
 
     public void setTwitterCardDescription(String twitterCardDescription) { this.twitterCardDescription = twitterCardDescription; }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) { this.title = title; }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 }
