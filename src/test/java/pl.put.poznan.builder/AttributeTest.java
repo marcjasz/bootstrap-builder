@@ -1,9 +1,8 @@
-package pl.put.poznan.builder.logic.test;
-
 import org.junit.jupiter.api.Test;
 import pl.put.poznan.builder.logic.Attribute;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class AttributeTest {
 
@@ -13,7 +12,6 @@ class AttributeTest {
         attribute.addValue("6");
         assertEquals("[6]", attribute.getValue().toString());
     }
-
 
     @Test
     void toStringTest() {

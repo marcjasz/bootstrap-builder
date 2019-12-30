@@ -1,14 +1,8 @@
-package pl.put.poznan.builder.logic.test;
-
-import org.junit.Before;
 import org.testng.annotations.Test;
-import pl.put.poznan.builder.logic.Element;
 import pl.put.poznan.builder.logic.TemplateBuilder;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-import static org.testng.AssertJUnit.assertNotNull;
 
 
 public class TemplateBuilderTest {

@@ -1,11 +1,8 @@
-package pl.put.poznan.builder.logic.test;
-
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import pl.put.poznan.builder.logic.Element;
-import pl.put.poznan.builder.logic.TemplateBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class ElementTest {
 

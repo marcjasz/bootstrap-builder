@@ -1,10 +1,7 @@
-package pl.put.poznan.builder.logic.test;
-
-
 import pl.put.poznan.builder.logic.Request;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RequestTest {
     @org.junit.jupiter.api.Test
