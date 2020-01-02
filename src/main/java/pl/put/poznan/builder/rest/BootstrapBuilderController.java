@@ -26,6 +26,11 @@ public class BootstrapBuilderController {
                 .setMain()
                 .addParagraph("Hello", "display-1")
                 .build();
+
+        if(request.isFooterEnable()){
+            TemplateBuilder.FooterBuilder footer = TemplateBuilder.footerBuilder();
+            templateBuilder.addFooter(footer.buildFooter(request.getFooterText()));
+        }
         return result;
     }
 }

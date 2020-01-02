@@ -38,6 +38,32 @@ public class TemplateBuilder {
             return this;
         }
 
+        public Builder addFooter(Element tag){
+            if(tag!=null){
+                this.body.addNode(tag);
+            }
+            return this;
+        }
+
+        public static final class FooterBuilder{
+            private String footerText;
+
+            public String setFooterText(String text){
+                this.footerText = text;
+                return text;
+            }
+
+            public Element buildFooter(String text){
+
+                Element footerElement = new Element().setTag("footer").setText(setFooterText(text));
+
+                return footerElement;
+            }
+        }
+
+
+
+
         /** {@code <main>} element, specifying the main content of the document. */
         public Builder setMain() {
             Element main = new Element().setTag("main");
@@ -173,4 +199,5 @@ public class TemplateBuilder {
     public static Builder builder() {
         return new Builder();
     }
+    public static Builder.FooterBuilder footerBuilder(){return new Builder.FooterBuilder();}
 }
