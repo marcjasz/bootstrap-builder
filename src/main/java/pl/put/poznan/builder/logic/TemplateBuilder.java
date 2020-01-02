@@ -13,18 +13,6 @@ public class TemplateBuilder {
         private Element head;
         private Element body;
         private Element main;
-        private boolean headerEnable = false;
-        private String headerType;
-        private String headerText;
-        private boolean footerEnable = false;
-        private String footerText;
-        private String metaTitle;
-        private String metaType;
-        private String metaDescription;
-        private String metaImage; //?
-        private boolean metaSeoNormal;
-        private boolean metaSeoTwitter;
-        private boolean metaSeoOpengraph;
 
         /** Empty {@code <head>} element. */
         public Builder setHead() {
@@ -74,6 +62,34 @@ public class TemplateBuilder {
             return this;
         }
 
+        /** Adds an tag to the {@code <head>} element, does nothing if the element is null.
+         * @param tag
+         */
+        public Builder addSeoTagIfExists(Element tag){
+            if(tag != null)
+                this.head.addNode(tag);
+            return this;
+        }
+
+        public Builder addTitleIfProvided(String title){
+            if (title == null) return this;
+
+            Element titleElement = new Element().setTag("title").setText(title);
+            this.head.addNode(titleElement);
+            return this;
+        }
+
+        public Builder addDescriptionIfProvided(String description){
+            if (description == null) return this;
+
+            Element descriptionElement = new Element().setTag("meta").setNullTag();
+            descriptionElement
+                    .addAttribute(new Attribute("name", "description"))
+                    .addAttribute(new Attribute("content", description));
+            this.head.addNode(descriptionElement);
+            return this;
+        }
+
         /** Adds a paragraph to the main section. Not in the project specification, but it shows if Bootstrap works.
          * @param content text inside the paragraph
          * @param classAttrs values of the 'class' attribute, in particular we can enter Bootstrap stuff here.
@@ -88,66 +104,6 @@ public class TemplateBuilder {
             }
             p.addAttribute(attr);
             this.main.addNode(p);
-            return this;
-        }
-
-        public Builder headerEnable(boolean headerEnable){
-            this.headerEnable = headerEnable;
-            return this;
-        }
-
-        public Builder headerType(String headerType){
-            this.headerType = headerType;
-            return this;
-        }
-
-        public Builder headerText(String headerText){
-            this.headerText = headerText;
-            return this;
-        }
-
-        public Builder footerEnable(boolean footerEnable){
-            this.footerEnable = footerEnable;
-            return this;
-        }
-
-        public Builder footerText(String footerText){
-            this.footerText = footerText;
-            return this;
-        }
-
-        public Builder metaTitle(String metaTitle){
-            this.metaTitle = metaTitle;
-            return this;
-        }
-
-        public Builder metaType(String metaType){
-            this.metaType = metaType;
-            return this;
-        }
-
-        public Builder metaDescription(String metaDescription) {
-            this.metaDescription = metaDescription;
-            return this;
-        }
-
-        public Builder metaImage(String metaImage){
-            this.metaImage = metaImage;
-            return this;
-        }
-
-        public Builder metaSeoNormal(boolean metaSeoNormal){
-            this.metaSeoNormal = metaSeoNormal;
-            return this;
-        }
-
-        public Builder metaSeoTwitter(boolean metaSeoTwitter){
-            this.metaSeoTwitter = metaSeoTwitter;
-            return this;
-        }
-
-        public Builder metaSeoOpengraph(boolean metaSeoOpengraph){
-            this.metaSeoOpengraph = metaSeoOpengraph;
             return this;
         }
 
@@ -168,9 +124,35 @@ public class TemplateBuilder {
     }
 
     /**
+     * A helper class which creates typical SEO meta elements.
+     */
+    public static final class SeoTagBuilder {
+        private String prefix;
+        private String propertyAttributeName;
+
+        public SeoTagBuilder setPrefix(String prefix) {
+            this.prefix = prefix;
+            return this;
+        }
+
+        public SeoTagBuilder setPropertyAttributeName(String propertyAttributeName) {
+            this.propertyAttributeName = propertyAttributeName;
+            return this;
+        }
+
+        public Element buildSeoTag(String property, String content){
+            if (content == null) return null;
+
+            Element meta = new Element().setTag("meta").setNullTag();
+            Attribute attrName = new Attribute(this.propertyAttributeName, this.prefix + ":" + property);
+            Attribute cont = new Attribute("content", content);
+            meta.addAttribute(attrName).addAttribute(cont);
+            return meta;
+        }
+    }
+    /**
      * @return This method creates new builder object to create new templateBuilder object.
      */
-    public static Builder builder() {
-        return new Builder();
-    }
+    public static Builder builder() { return new Builder(); }
+    public static SeoTagBuilder seoTagBuilder() { return new SeoTagBuilder(); }
 }
