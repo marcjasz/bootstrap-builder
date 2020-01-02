@@ -35,12 +35,15 @@ public class Element {
         this.nullTag = true;
         return this;
     }
+
     public String getTag(){
         return tag;
     }
-    public String getChildTag(){
-        return childElements.get (0).getTag();
+
+    public String getChildTag() {
+        return childElements.get(0).getTag();
     }
+
     public  Boolean getNullTag(){
         return nullTag;
     }
@@ -50,12 +53,13 @@ public class Element {
         this.text = text;
         return this;
     }
-    public  String getChildText(){
-        return childElements.get (0).text;
+
+    public  String getChildText() {
+        return childElements.get(0).text;
     }
 
     /** Method which is called recurrently to find how deeply the element is nested, so we can indent it properly. */
-    public Element setDepth(Integer depth){
+    public Element setDepth(Integer depth) {
         this.depth = depth;
         for(Element child : childElements) {
             child.setDepth(depth + 1);

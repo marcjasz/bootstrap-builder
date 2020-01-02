@@ -32,18 +32,23 @@ public class TemplateBuilder {
             this.head = new Element().setTag("head");
             return this;
         }
+
         public String getHeadTag(){
             return head.getTag();
         }
-        public String getHeadChildTag(){
+
+        public String getHeadChildTag() {
             return head.getChildTag();
         }
-        public String getMainChildTag(){
+
+        public String getMainChildTag() {
             return main.getChildTag();
         }
-        public String getMainChildText(){
+
+        public String getMainChildText() {
             return main.getChildText();
         }
+
         /** Empty {@code <body>} element. */
         public Builder setBody() {
             this.body = new Element().setTag("body");
@@ -148,17 +153,17 @@ public class TemplateBuilder {
             return this;
         }
 
-        public Builder metaSeoNormal(boolean metaSeoNormal){
+        public Builder metaSeoNormal(boolean metaSeoNormal) {
             this.metaSeoNormal = metaSeoNormal;
             return this;
         }
 
-        public Builder metaSeoTwitter(boolean metaSeoTwitter){
+        public Builder metaSeoTwitter(boolean metaSeoTwitter) {
             this.metaSeoTwitter = metaSeoTwitter;
             return this;
         }
 
-        public Builder metaSeoOpengraph(boolean metaSeoOpengraph){
+        public Builder metaSeoOpengraph(boolean metaSeoOpengraph) {
             this.metaSeoOpengraph = metaSeoOpengraph;
             return this;
         }
