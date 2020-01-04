@@ -23,8 +23,7 @@ public class Element {
         return this;
     }
 
-
-    /** Sets the name of the element's tag e.g. 'p' for paragraph ({@code <p>...</p>}). */
+    /** Sets the name of the element's tag. E.g. 'p' for paragraph ({@code <p>...</p>}). */
     public Element setTag(String tag) {
         this.tag = tag;
         return this;
@@ -67,7 +66,7 @@ public class Element {
         return this;
     }
 
-    /** Adds an attribute to the element's tag (e.g. class="text-left"). */
+    /** Adds an attribute to the element's tag. E.g. class="text-left" */
     public Element addAttribute(Attribute attribute) {
         this.attributes.addElement(attribute);
         return this;

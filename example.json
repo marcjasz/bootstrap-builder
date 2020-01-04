@@ -1,0 +1,13 @@
+{
+  "title": "very title",
+  "description": "important page",
+  "openGraphEnabled": true,
+  "openGraphTitle": "a little title",
+  "openGraphUrl": "www.ee.pl",
+  "openGraphImage": "www.ee.pl/img.png",
+  "twitterCardEnabled": true,
+  "twitterCardTitle": "lubie placki",
+  "twitterCardUrl": "www.uuu.com",
+  "twitterCardImage": "www.uuu.com/pic.jpg",
+  "twitterCardDescription": "very cool"
+}
