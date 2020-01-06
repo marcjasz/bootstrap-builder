@@ -107,6 +107,17 @@ public class TemplateBuilder {
             return this;
         }
 
+        public Builder addHeader(String type, String text) {
+            Element header = new Element()
+                    .setTag("header")
+                    .setText(text);
+            Attribute attr = new Attribute("style");
+            attr.addValue("position:" + type);
+            header.addAttribute(attr);
+            this.main.addNode(header);
+            return this;
+        }
+
         /**
          * @return This method creates a string from the previously declared HTML code,
          * it always should be at the end of definition of new object.
