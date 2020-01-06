@@ -71,6 +71,15 @@ public class TemplateBuilder {
             return this;
         }
 
+        public Builder addFooter(String text){
+            Element footer = new Element();
+            footer.setTag("footer");
+            footer.setText(text);
+
+            this.body.addNode(footer);
+            return this;
+        }
+
         public Builder addTitleIfProvided(String title){
             if (title == null) return this;
 
@@ -122,6 +131,7 @@ public class TemplateBuilder {
             return doctype + "\n" + document;
         }
     }
+
 
     /**
      * A helper class which creates typical SEO meta elements.
