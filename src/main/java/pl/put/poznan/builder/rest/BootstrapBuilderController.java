@@ -16,6 +16,7 @@ public class BootstrapBuilderController {
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "text/html")
     public String post(@RequestBody Request request) {
         new TemplateBuilder();
+
         TemplateBuilder.Builder templateBuilder  = TemplateBuilder.builder()
             .setHead()
             .addTitleIfProvided(request.getTitle())
@@ -58,6 +59,7 @@ public class BootstrapBuilderController {
 //        }
 
         return templateBuilder.build();
+
     }
 }
 
