@@ -76,6 +76,7 @@ public class TemplateBuilder {
             footer.setTag("footer");
             footer.setText(text);
 
+
             this.body.addNode(footer);
             return this;
         }

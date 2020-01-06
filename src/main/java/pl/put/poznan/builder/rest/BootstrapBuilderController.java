@@ -27,7 +27,7 @@ public class BootstrapBuilderController {
             .setBody()
             .setMain()
             .addParagraph("Hello", "display-1");
-        
+
         if (request.isOpenGraphEnabled()) {
             TemplateBuilder.SeoTagBuilder openGraphBuilder = TemplateBuilder.seoTagBuilder();
             openGraphBuilder.setPrefix("og").setPropertyAttributeName("property");
@@ -51,6 +51,7 @@ public class BootstrapBuilderController {
                     .addSeoTagIfExists(twitterTagBuilder.buildSeoTag("description", request.getTwitterCardDescription()));
         }
 
+        
         if(request.isFooterEnable()){
             templateBuilder
                     .addFooter(request.getFooterText());
