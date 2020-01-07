@@ -111,10 +111,10 @@ public class TemplateBuilder {
             Element header = new Element()
                     .setTag("header")
                     .setText(text);
-            Attribute attr = new Attribute("style");
-            attr.addValue("position:" + type);
+            Attribute attr = new Attribute("class");
+            attr.addValue("navbar " + type + "-top navbar-expand-sm bg-warning navbar-dark");
             header.addAttribute(attr);
-            this.main.addNode(header);
+            this.body.addNode(header);
             return this;
         }
 
