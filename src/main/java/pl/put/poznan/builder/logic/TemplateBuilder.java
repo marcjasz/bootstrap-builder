@@ -71,13 +71,15 @@ public class TemplateBuilder {
                 this.head.addNode(tag);
             return this;
         }
+        
 
-        public Builder addFooter(String text){
-            Element footer = new Element();
-            footer.setTag("footer");
-            footer.setText(text);
-
-
+        public Builder addFooter(String text) {
+            Element footer = new Element()
+                    .setTag("nav")
+                    .setText(text);
+            Attribute attr = new Attribute("class");
+            attr.addValue("navbar fixed-bottom navbar-light bg-dark text-white");
+            footer.addAttribute(attr);
             this.body.addNode(footer);
             return this;
         }
