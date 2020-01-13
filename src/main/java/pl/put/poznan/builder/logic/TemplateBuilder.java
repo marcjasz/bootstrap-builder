@@ -71,7 +71,7 @@ public class TemplateBuilder {
                 this.head.addNode(tag);
             return this;
         }
-        
+
 
         public Builder addFooter(String text) {
             Element footer = new Element()

@@ -53,6 +53,15 @@ public class BootstrapBuilderController {
         }
 
 
+
+
+
+
+
+
+
+
+        
         if(request.isFooterEnable()){
             templateBuilder
                     .addFooter(request.getFooterText());
