@@ -51,20 +51,13 @@ public class BootstrapBuilderController {
                     .addSeoTagIfExists(twitterTagBuilder.buildSeoTag("image", request.getTwitterCardImage()))
                     .addSeoTagIfExists(twitterTagBuilder.buildSeoTag("description", request.getTwitterCardDescription()));
         }
-
-
-
-
-
-
-
-
-
-
-        
         if(request.isFooterEnable()){
-            templateBuilder
+             templateBuilder
                     .addFooter(request.getFooterText());
+        }
+        if (request.isHeaderEnable()) {
+            templateBuilder
+                    .addHeader(request.getHeaderType(), request.getHeaderText());
         }
 
         return templateBuilder.build();

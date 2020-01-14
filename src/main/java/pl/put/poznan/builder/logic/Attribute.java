@@ -7,6 +7,7 @@ import java.util.Vector;
  * E.g. class="lead text-justify col-md-8"
  */
 public class Attribute {
+
     private String name;
     private Vector<String> values = new Vector<String>();
 
@@ -25,6 +26,10 @@ public class Attribute {
     public Attribute addValue(String value) {
         this.values.addElement(value);
         return this;
+    }
+
+    public Vector<String> getValue(){
+        return values;
     }
 
     /** Forms a string from the Attribute object, the values are all surrounded by quotes and separated by spaces. */

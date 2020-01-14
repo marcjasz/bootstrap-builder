@@ -10,6 +10,7 @@ public class TemplateBuilder {
      *This class creates fluent API for creating TemplateBuilder objects.
      */
     public static final class Builder{
+
         private Element head;
         private Element body;
         private Element main;
@@ -18,6 +19,22 @@ public class TemplateBuilder {
         public Builder setHead() {
             this.head = new Element().setTag("head");
             return this;
+        }
+
+        public String getHeadTag(){
+            return head.getTag();
+        }
+
+        public String getHeadChildTag() {
+            return head.getChildTag();
+        }
+
+        public String getMainChildTag() {
+            return main.getChildTag();
+        }
+
+        public String getMainChildText() {
+            return main.getChildText();
         }
 
         /** Empty {@code <body>} element. */
@@ -117,6 +134,17 @@ public class TemplateBuilder {
             }
             p.addAttribute(attr);
             this.main.addNode(p);
+            return this;
+        }
+
+        public Builder addHeader(String type, String text) {
+            Element header = new Element()
+                    .setTag("header")
+                    .setText(text);
+            Attribute attr = new Attribute("class");
+            attr.addValue("navbar " + type + "-top navbar-expand-sm bg-warning navbar-dark");
+            header.addAttribute(attr);
+            this.body.addNode(header);
             return this;
         }
 
