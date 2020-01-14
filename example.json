@@ -12,5 +12,7 @@
   "twitterCardDescription": "very cool",
   "headerType": "static",
   "headerText": "Najpiękniejszy nagłówek na świecie xd",
-  "headerEnable": true
+  "headerEnable": true,
+  "footerText": "Niby nagłówek a tak naprawdę navabr",
+  "footerEnable":true
 }
