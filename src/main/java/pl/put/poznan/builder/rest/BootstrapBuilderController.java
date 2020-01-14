@@ -16,6 +16,7 @@ public class BootstrapBuilderController {
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "text/html")
     public String post(@RequestBody Request request) {
         new TemplateBuilder();
+
         TemplateBuilder.Builder templateBuilder  = TemplateBuilder.builder()
             .setHead()
             .addTitleIfProvided(request.getTitle())
@@ -50,13 +51,17 @@ public class BootstrapBuilderController {
                     .addSeoTagIfExists(twitterTagBuilder.buildSeoTag("image", request.getTwitterCardImage()))
                     .addSeoTagIfExists(twitterTagBuilder.buildSeoTag("description", request.getTwitterCardDescription()));
         }
-
+        if(request.isFooterEnable()){
+             templateBuilder
+                    .addFooter(request.getFooterText());
+        }
         if (request.isHeaderEnable()) {
             templateBuilder
                     .addHeader(request.getHeaderType(), request.getHeaderText());
         }
 
         return templateBuilder.build();
+
     }
 }
 

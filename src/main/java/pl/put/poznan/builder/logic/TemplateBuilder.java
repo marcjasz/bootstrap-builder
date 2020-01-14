@@ -43,6 +43,7 @@ public class TemplateBuilder {
             return this;
         }
 
+
         /** {@code <main>} element, specifying the main content of the document. */
         public Builder setMain() {
             Element main = new Element().setTag("main");
@@ -85,6 +86,18 @@ public class TemplateBuilder {
         public Builder addSeoTagIfExists(Element tag){
             if(tag != null)
                 this.head.addNode(tag);
+            return this;
+        }
+
+
+        public Builder addFooter(String text) {
+            Element footer = new Element()
+                    .setTag("nav")
+                    .setText(text);
+            Attribute attr = new Attribute("class");
+            attr.addValue("navbar fixed-bottom navbar-light bg-dark text-white");
+            footer.addAttribute(attr);
+            this.body.addNode(footer);
             return this;
         }
 
@@ -151,6 +164,7 @@ public class TemplateBuilder {
         }
     }
 
+
     /**
      * A helper class which creates typical SEO meta elements.
      */
@@ -178,9 +192,11 @@ public class TemplateBuilder {
             return meta;
         }
     }
+
     /**
      * @return This method creates new builder object to create new templateBuilder object.
      */
     public static Builder builder() { return new Builder(); }
     public static SeoTagBuilder seoTagBuilder() { return new SeoTagBuilder(); }
+
 }
